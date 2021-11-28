@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include "ball.h"
 #include "bat.h"
 
 int main(int argc, char *argv[])
@@ -14,18 +15,18 @@ int main(int argc, char *argv[])
     Bat *bat = new Bat();
     bat->setRect(0,0,100,10);
 
+    Ball *ball = new Ball(10,10,20,20,10);
+
+
     //adding bat to the scene
     scene->addItem(bat);
+    scene->addItem(ball);
 
     //setting focus to the bat
     bat->setFlag(QGraphicsItem::ItemIsFocusable);
     bat->setFocus();
 
-
-
     QGraphicsView *view  = new QGraphicsView(scene);
-
-
 
     //hiding scroll bars
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -41,8 +42,7 @@ int main(int argc, char *argv[])
     bat->setPos(view->width()/2 - (bat->rect().width()/2),
                 view->height() - bat->rect().height()*2);
 
-
-
-
     return a.exec();
 }
+
+
