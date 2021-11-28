@@ -12,13 +12,34 @@ int main(int argc, char *argv[])
 
     //create an item to add to the scene
     Bat *bat = new Bat();
-    bat->setRect(0,0,100,100);
+    bat->setRect(0,0,100,10);
 
     //adding bat to the scene
     scene->addItem(bat);
 
+    //setting focus to the bat
+    bat->setFlag(QGraphicsItem::ItemIsFocusable);
+    bat->setFocus();
+
+
+
     QGraphicsView *view  = new QGraphicsView(scene);
+
+
+
+    //hiding scroll bars
+    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    //setting fixed size to the view
+    view->setFixedSize(400,600);
+    scene->setSceneRect(0,0,400,600);
+
     view->show();
+
+    //setting bat position
+    bat->setPos(view->width()/2 - (bat->rect().width()/2),
+                view->height() - bat->rect().height()*2);
 
 
 
