@@ -1,7 +1,7 @@
 #include "bat.h"
 #include <QKeyEvent>
 #include <QGraphicsScene>
-
+#include "brick.h"
 void Bat::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Left){
@@ -12,6 +12,13 @@ void Bat::keyPressEvent(QKeyEvent *event)
         moveBatRight();
 
     }
+}
+
+void Bat::spawn()
+{
+    Brick *brick = new Brick();
+    scene()->addItem(brick);
+
 }
 
 void Bat::moveBatLeft()

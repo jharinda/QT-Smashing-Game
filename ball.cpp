@@ -3,6 +3,9 @@
 #include <QGraphicsScene>
 #include <QDebug>
 #include "bat.h"
+#include <QList>
+
+#include "brick.h"
 
 Ball::Ball(float x,float y ,float width,float height,float speed)
 {
@@ -20,24 +23,33 @@ Ball::Ball(float x,float y ,float width,float height,float speed)
 
 void Ball::move(){
 
+    QList<QGraphicsItem* > colliding_items = collidingItems();
+    for (int i=0, n = colliding_items.size(); i < n ; ++i){
+        if(typeid(*(colliding_items[i])) == typeid(Brick)){
+            scene()->removeItem(colliding_items[i]);
+            qDebug() << "brick removed";
+        }
+    }
+
+
     //when ball reaches the right
-    if(x() + (rect().width()) * 2 > scene()->width()){
+    if(pos().x() + (rect().width()) * 2 > scene()->width()){
         speedX *= -1;
     }
 
      //when ball reaches the left
-    if (x() < 0) {
+    if (pos().x() < 0) {
         speedX *= -1;
 
     }
 
     //when ball reaches the bottom
-    if (y() + (rect().height()) * 2 >= scene()->height()) {
+    if (pos().y() + (rect().height()) > scene()->height()) {
         speedY *= -1;
     }
 
     //when ball reaches the top
-    if (y() < 0) {
+    if (pos().y() < 0) {
         speedY *= -1;
     }
 

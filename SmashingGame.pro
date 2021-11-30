@@ -11,11 +11,15 @@ CONFIG += c++11
 SOURCES += \
     ball.cpp \
     bat.cpp \
+    brick.cpp \
+    game.cpp \
     main.cpp
 
 HEADERS += \
     ball.h \
-    bat.h
+    bat.h \
+    brick.h \
+    game.h
 
 FORMS +=
 
