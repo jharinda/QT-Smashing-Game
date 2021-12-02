@@ -15,6 +15,7 @@ class Game : public QGraphicsView
 public:
     Game(QWidget *parent = 0);
     QGraphicsScene *scene;
+    QGraphicsView *view;
     Bat *bat;
     Ball *ball;
     Brick *brick;

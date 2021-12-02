@@ -17,13 +17,15 @@ Game::Game(QWidget *parent)
     screenWidth = SCREEN_WIDTH;
     screenHeight = SCREEN_HEIGHT;
 
-    //create a new scene
-    QGraphicsScene *scene = new QGraphicsScene();
+    //initialize the new scene
+    scene = new QGraphicsScene();
+
+    view  = new QGraphicsView(scene);
 
     //create an item to add to the scene
-    QPixmap *batImage = new QPixmap(":/images/Res/Images/Playground/Bat.png");
-    QPixmap *ballImage = new QPixmap(":/images/Res/Images/Playground/Ball.png");
-    QPixmap *brickImage = new QPixmap(":/images/Res/Images/Playground/Brick.png");
+    batImage = new QPixmap(":/images/Res/Images/Playground/Bat.png");
+    ballImage = new QPixmap(":/images/Res/Images/Playground/Ball.png");
+    brickImage = new QPixmap(":/images/Res/Images/Playground/Brick.png");
 
     Bat *bat = new Bat();
     bat->setPixmap(*batImage);
@@ -31,9 +33,6 @@ Game::Game(QWidget *parent)
     Ball *ball = new Ball(10);
     ball->setPos(0,0);
     ball->setPixmap(*ballImage);
-
-    QTimer *timer = new QTimer();
-    QObject::connect(timer,SIGNAL(timeout()),bat,SLOT(spawn()));
 
     //create the score
     score = new Score();
@@ -49,11 +48,11 @@ Game::Game(QWidget *parent)
 
     //Generate Brick
     QTimer *brickGenerator = new QTimer();
-    QObject::connect(brickGenerator,SIGNAL(timeout()),this,
+    QObject::connect( brickGenerator,SIGNAL(timeout()),this,
                      SLOT(spawnBrick()));
-    //brickGenerator->start(3000);
+    brickGenerator->start(3000);
 
-    QGraphicsView *view  = new QGraphicsView(scene);
+
 
     //hiding scroll bars
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -72,14 +71,16 @@ Game::Game(QWidget *parent)
     score->setPos(score->boundingRect().width() / 4,
                   view->height() - score->boundingRect().height() - 3);
 
+    //set game background
     scene->setBackgroundBrush(QPixmap(":/images/Res/Images/Playground/Background.png"));
-    timer->start(2000);
 }
 
+//Spawn Brick SLOT
 void Game::spawnBrick()
 {
     qDebug() << "spawn";
     Brick *brick = new Brick();
     scene->addItem(brick);
     brick->setPixmap(*brickImage);
+
 }
