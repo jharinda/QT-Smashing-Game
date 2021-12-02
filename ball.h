@@ -5,11 +5,11 @@
 #include <QMediaPlayer>
 #include <QObject>
 
-class Ball: public QObject ,public QGraphicsPixmapItem
+class Ball: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    Ball(float x, float y, float width, float height, float speed,QGraphicsItem *parent = 0);
+    Ball(float speed,QGraphicsItem *parent = 0);
 
 public slots:
     void move();

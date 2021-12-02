@@ -11,10 +11,9 @@
 
 extern Game * game;
 
-Ball::Ball(float x, float y, float width, float height, float speed,QGraphicsItem *parent)
+Ball::Ball(float speed, QGraphicsItem *parent)
     : QGraphicsPixmapItem(parent)
 {
-    //QRectF rectangle(x,y, width, height);
     setPixmap(QPixmap(":/images/Res/Images/Playground/Ball.png"));
 
     ballHitBat = new QMediaPlayer();
@@ -40,6 +39,7 @@ void Ball::move(){
     for (int i=0, n = colliding_items.size(); i < n ; ++i){
 
         if(typeid(*(colliding_items[i])) == typeid(Brick)){
+            playSound(ballHitBrick);
 
             int BRICK_WIDTH =  colliding_items[i]-> boundingRect().width();
             int brickX = colliding_items[i]->pos().x();
@@ -48,33 +48,27 @@ void Ball::move(){
 
             speedX = brickHitPos * RECOIL_X_MAX;
 
-            qDebug() << pos().x() << brickX;
-
             if( pos().x() + pixmap().width() > brickX ||
                 pos().x() + pixmap().width() != brickX+BRICK_WIDTH ){
 
                 speedY = -speedY;
             }
 
-            game->score->increase();
+             game->score->increase();
              scene()->removeItem(colliding_items[i]);
-
-             playSound(ballHitBrick);
-
+             delete colliding_items[i];
         }
-        else if(typeid(*(colliding_items[i])) == typeid(Bat)){
+
+        else if( typeid(*(colliding_items[i])) == typeid(Bat)){
 
         playSound(ballHitBat);
 
         int BAT_WIDTH =  colliding_items[i]->boundingRect().width();
         int batX = colliding_items[i]->pos().x();
 
-
         float batHitPos = ( pos().x() - ( batX + BAT_WIDTH / 2)) / (BAT_WIDTH);
         speedY = -speedY;
         speedX = batHitPos * RECOIL_X_MAX;
-
-
         }
     }
 
@@ -88,7 +82,11 @@ void Ball::move(){
 
      //when ball reaches the left
     if (pos().x() < 0) {
-        speedX *= -1;
+
+        if(speedX < 0){
+            speedX *= -1;
+        }
+
         playSound(ballHitWall);
 
     }
@@ -102,8 +100,11 @@ void Ball::move(){
     }
 
     //when ball reaches the top
-    if (pos().y() < 0) {
-        speedY *= -1;
+    if (pos().y() <= 0) {
+        if(speedY < 0){
+            speedY *= -1;
+        }
+
         playSound(ballHitWall);
     }
 

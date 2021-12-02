@@ -11,16 +11,27 @@
 
 class Game : public QGraphicsView
 {
+    Q_OBJECT
 public:
     Game(QWidget *parent = 0);
     QGraphicsScene *scene;
-    Bat * bat;
-    Ball * ball;
-    Brick * brick;
-    Score * score;
+    Bat *bat;
+    Ball *ball;
+    Brick *brick;
+    Score *score;
 
 public:
-    int screenWidth = 500;
+    int screenWidth;
+    int screenHeight;
+
+public slots:
+    void spawnBrick();
+
+private:
+    QPixmap *batImage;
+    QPixmap *ballImage;
+    QPixmap *brickImage;
+
 
 };
 
