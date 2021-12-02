@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>Res/Images/Playground/Background.png</file>
+        <file>Res/Images/Playground/Ball.png</file>
+        <file>Res/Images/Playground/Bat.png</file>
+        <file>Res/Images/Playground/Brick.png</file>
+        <file>Res/Images/Playground/Health_bar.png</file>
+        <file>Res/Images/Playground/Player_health_holder.png</file>
+    </qresource>
+    <qresource prefix="/sounds">
+        <file>Res/Sounds/Bat_Hit.wav</file>
+        <file>Res/Sounds/Brick_Hit.wav</file>
+        <file>Res/Sounds/Wall_Hit.wav</file>
+    </qresource>
+</RCC>

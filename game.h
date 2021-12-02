@@ -7,15 +7,20 @@
 #include "ball.h"
 #include "bat.h"
 #include "brick.h"
+#include "score.h"
 
 class Game : public QGraphicsView
 {
 public:
     Game(QWidget *parent = 0);
     QGraphicsScene *scene;
-    Bat *bat;
-    Ball *ball;
-    Brick *brick;
+    Bat * bat;
+    Ball * ball;
+    Brick * brick;
+    Score * score;
+
+public:
+    int screenWidth = 500;
 
 };
 

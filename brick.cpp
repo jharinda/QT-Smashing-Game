@@ -1,14 +1,20 @@
 #include "brick.h"
 #include <QGraphicsScene>
 #include <QList>
+#include <QPointF>
 #include <QTimer>
 #include <stdlib.h>
+#include "game.h"
 
-Brick::Brick():QObject(),QGraphicsRectItem()
+extern Game * game;
+
+Brick::Brick(QGraphicsItem *parent):QObject(),QGraphicsPixmapItem()
 {
-    int random_number = rand() % 500;
-    setPos(random_number,100);
-    setRect(0,0,100,50);
+    setPixmap(QPixmap(":/images/Res/Images/Playground/Brick.png"));
+
+    int random_number = rand() % game->screenWidth - pixmap().width();
+    setPos(random_number,random_number);
+
 
     //QTimer *timer = new QTimer(this);
     //connect(timer,SIGNAL(timeout()),this,SLOT(move()));

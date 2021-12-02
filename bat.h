@@ -1,18 +1,22 @@
 #ifndef BAT_H
 #define BAT_H
-#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 #include <QObject>
+#define RECOIL_X_MAX 20
 
-class Bat: public QObject, public QGraphicsRectItem
+
+class Bat: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
+    Bat(QGraphicsItem *parent = 0);
+
     void keyPressEvent(QKeyEvent *event);
 
 public slots:
     void spawn();
 
-private:
+public:
     void moveBatLeft();
     void moveBatRight();
 };

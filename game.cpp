@@ -1,10 +1,15 @@
 #include "game.h"
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QPixmap>
 #include <QTimer>
 #include "ball.h"
 #include "bat.h"
 #include "brick.h"
+#include <QDebug>
+
+#define SCREEN_WIDTH 500
+#define SCREEN_HEIGHT 600
 
 Game::Game(QWidget *parent)
 {
@@ -13,16 +18,19 @@ Game::Game(QWidget *parent)
 
     //create an item to add to the scene
     Bat *bat = new Bat();
-    bat->setRect(0,0,100,10);
 
-    Ball *ball = new Ball(0,0,20,20,10);
-    //ball->setPos(200,200);
+    Ball *ball = new Ball(0,0,20,20,9);
+    ball->setPos(0,0);
 
     //Brick *brick = new Brick();
     QTimer *timer = new QTimer();
     QObject::connect(timer,SIGNAL(timeout()),bat,SLOT(spawn()));
 
-    timer->start(2000);
+    //create the score
+    score = new Score();
+
+    scene->addItem(score);
+
     //adding bat to the scene
     scene->addItem(bat);
     scene->addItem(ball);
@@ -38,12 +46,20 @@ Game::Game(QWidget *parent)
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     //setting fixed size to the view
-    view->setFixedSize(400,600);
-    scene->setSceneRect(0,0,400,600);
+    view->setFixedSize(SCREEN_WIDTH,SCREEN_HEIGHT);
+    scene->setSceneRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 
     view->show();
 
     //setting bat position
-    bat->setPos(view->width()/2 - (bat->rect().width()/2),
-                view->height() - bat->rect().height()*2);
+    bat->setPos(view->width()/2 - (bat->pixmap().width()/2),
+                view->height() - bat->pixmap().height()*1.5);
+
+     score->setPos(score->boundingRect().width() / 4,
+                   view->height() - score->boundingRect().height() - 3);
+
+
+    scene->setBackgroundBrush(QPixmap(":/images/Res/Images/Playground/Background.png"));
+
+    timer->start(2000);
 }

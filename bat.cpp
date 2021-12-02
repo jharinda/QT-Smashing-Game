@@ -2,6 +2,13 @@
 #include <QKeyEvent>
 #include <QGraphicsScene>
 #include "brick.h"
+#include <QDebug>
+
+Bat::Bat(QGraphicsItem *parent):QGraphicsPixmapItem(parent)
+{
+    setPixmap(QPixmap(":/images/Res/Images/Playground/Bat.png"));
+}
+
 void Bat::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Left){
@@ -23,14 +30,14 @@ void Bat::spawn()
 
 void Bat::moveBatLeft()
 {
-    if(x() > 0){
-         setPos(x() - 10, y());
+    if(x() > 0) {
+        setPos(x() - 10, y());
     }
 }
 
 void Bat::moveBatRight()
 {
-    if(x() + rect().width() < scene() -> width()) {
+    if(x() + pixmap().width() < scene() -> width()) {
          setPos(x() + 10, y());
     }
 }

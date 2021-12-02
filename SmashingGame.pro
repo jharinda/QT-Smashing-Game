@@ -1,4 +1,5 @@
 QT       += core gui
+QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,13 +14,15 @@ SOURCES += \
     bat.cpp \
     brick.cpp \
     game.cpp \
-    main.cpp
+    main.cpp \
+    score.cpp
 
 HEADERS += \
     ball.h \
     bat.h \
     brick.h \
-    game.h
+    game.h \
+    score.h
 
 FORMS +=
 
@@ -27,3 +30,6 @@ FORMS +=
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    Res.qrc
