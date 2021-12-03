@@ -27,6 +27,7 @@ Game::Game(QWidget *parent)
     createBall();
     createBrick(3000);
     createScore();
+    createHealth();
 
 }
 
@@ -94,6 +95,13 @@ void Game::createScore()
                   view->height() - score->boundingRect().height() - 3);
 
     scene->addItem(score);
+}
+
+void Game::createHealth()
+{
+    health = new Health();
+    health->setPos(0,0);
+    scene->addItem(health);
 }
 
 void Game::setGameView()

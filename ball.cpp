@@ -91,8 +91,13 @@ void Ball::move(){
     if ( pos().y() + ( pixmap().height() ) > scene()->height()) {
         speedY *= -1;
         playSound(ballHitWall);
-//        speedY = 0;
-//        speedX = 0;
+
+        game->health->decrease();
+        if(game->health->getHealth() == 0){
+           // speedY = 0;
+           // speedX = 0;
+        }
+
     }
 
     //when ball reaches the top

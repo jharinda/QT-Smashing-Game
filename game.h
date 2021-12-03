@@ -8,6 +8,7 @@
 #include "bat.h"
 #include "brick.h"
 #include "score.h"
+#include "health.h"
 
 class Game : public QGraphicsView
 {
@@ -20,6 +21,7 @@ public:
     Ball *ball;
     Brick *brick;
     Score *score;
+    Health *health;
 
     int screenWidth;
     int screenHeight;
@@ -27,6 +29,8 @@ private:
     QPixmap *batImage;
     QPixmap *ballImage;
     QPixmap *brickImage;
+    QPixmap *healthBarImage;
+    QPixmap *healthSlideImage;
 
 
 public slots:
@@ -39,6 +43,7 @@ private:
     void createBall();
     void createBrick(int spawnTimeout);
     void createScore();
+    void createHealth();
 
     void setGameView();
     void setGameScene();
