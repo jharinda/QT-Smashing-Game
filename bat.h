@@ -16,7 +16,8 @@ public:
 public slots:
     void spawn();
 
-public:
+private:
+    int perPixel;
     void moveBatLeft();
     void moveBatRight();
 };

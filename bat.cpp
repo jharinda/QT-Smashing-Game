@@ -6,6 +6,7 @@
 
 Bat::Bat(QGraphicsItem *parent):QGraphicsPixmapItem(parent)
 {
+    perPixel = 10;
     setPixmap(QPixmap(":/images/Res/Images/Playground/Bat.png"));
 }
 
@@ -17,7 +18,6 @@ void Bat::keyPressEvent(QKeyEvent *event)
 
     else if(event->key() == Qt::Key_Right){
         moveBatRight();
-
     }
 }
 
@@ -31,13 +31,13 @@ void Bat::spawn()
 void Bat::moveBatLeft()
 {
     if(x() > 0) {
-        setPos(x() - 10, y());
+        setPos(x() - perPixel, y());
     }
 }
 
 void Bat::moveBatRight()
 {
     if(x() + pixmap().width() < scene() -> width()) {
-         setPos(x() + 10, y());
+         setPos(x() + perPixel, y());
     }
 }

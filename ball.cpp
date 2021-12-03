@@ -27,10 +27,6 @@ Ball::Ball(float speed, QGraphicsItem *parent)
     speedY = speed;
     speedX = speedY;
 
-    QTimer *timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(move()));
-
-    timer->start(33);
 }
 
 void Ball::move(){

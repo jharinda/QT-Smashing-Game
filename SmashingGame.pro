@@ -14,6 +14,7 @@ SOURCES += \
     bat.cpp \
     brick.cpp \
     game.cpp \
+    health.cpp \
     main.cpp \
     score.cpp
 
@@ -22,6 +23,7 @@ HEADERS += \
     bat.h \
     brick.h \
     game.h \
+    health.h \
     score.h
 
 FORMS +=

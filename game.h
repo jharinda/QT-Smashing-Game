@@ -21,18 +21,27 @@ public:
     Brick *brick;
     Score *score;
 
-public:
     int screenWidth;
     int screenHeight;
-
-public slots:
-    void spawnBrick();
-
 private:
     QPixmap *batImage;
     QPixmap *ballImage;
     QPixmap *brickImage;
 
+
+public slots:
+    void spawnBrick();
+
+private:
+    void setPixmaps();
+
+    void createBat();
+    void createBall();
+    void createBrick(int spawnTimeout);
+    void createScore();
+
+    void setGameView();
+    void setGameScene();
 
 };
 
