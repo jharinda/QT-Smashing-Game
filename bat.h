@@ -2,6 +2,7 @@
 #define BAT_H
 #include <QGraphicsPixmapItem>
 #include <QObject>
+
 #define RECOIL_X_MAX 20
 
 

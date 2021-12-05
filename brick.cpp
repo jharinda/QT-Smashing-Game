@@ -30,6 +30,7 @@ Brick::Brick(QGraphicsItem *parent):QGraphicsPixmapItem()
 
     connect(timer,SIGNAL(timeout()),this,SLOT(checkCollision()));
     timer->start(1);
+
 }
 
 void Brick::checkCollision()

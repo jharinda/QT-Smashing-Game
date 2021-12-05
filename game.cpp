@@ -23,6 +23,7 @@ Game::Game(QWidget *parent)
     //set image files
     setPixmaps();
 
+    createHealthHolder();
     createBat();
     createBall();
     createBrick(3000);
@@ -44,6 +45,8 @@ void Game::setPixmaps()
     batImage = new QPixmap(":/images/Res/Images/Playground/Bat.png");
     ballImage = new QPixmap(":/images/Res/Images/Playground/Ball.png");
     brickImage = new QPixmap(":/images/Res/Images/Playground/Brick.png");
+    healthBarImage = new QPixmap(":/images/Res/Images/Playground/Player_health_holder.png");
+    healthHolderImage = new QPixmap(":/images/Res/Images/Playground/Player_health_holder.png");
 }
 
 void Game::createBat()
@@ -68,7 +71,8 @@ void Game::createBat()
 void Game::createBall()
 {
     ball = new Ball(10);
-    ball->setPos(0 ,0);
+    ball->setPos( bat->pos().x() ,
+                 screenWidth - ball->boundingRect().height() - 10);
     ball->setPixmap(*ballImage);
     scene->addItem(ball);
 
@@ -100,8 +104,19 @@ void Game::createScore()
 void Game::createHealth()
 {
     health = new Health();
-    health->setPos(0,0);
+    health->setPos(healthHolder->x() - (health->boundingRect().width() + 2),
+                   healthHolder->y() -  health->boundingRect().height()*0.2);
     scene->addItem(health);
+}
+
+void Game::createHealthHolder()
+{
+    //adding health holder
+    healthHolder = new QGraphicsPixmapItem();
+    healthHolder->setPixmap(*healthHolderImage);
+    healthHolder->setPos(screenWidth - healthHolder->boundingRect().width()* 1.1,
+                         screenHeight - healthHolder->boundingRect().height()* 1.3);
+    scene->addItem(healthHolder);
 }
 
 void Game::setGameView()

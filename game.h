@@ -23,6 +23,8 @@ public:
     Score *score;
     Health *health;
 
+    QGraphicsPixmapItem *healthHolder;
+
     int screenWidth;
     int screenHeight;
 private:
@@ -30,7 +32,7 @@ private:
     QPixmap *ballImage;
     QPixmap *brickImage;
     QPixmap *healthBarImage;
-    QPixmap *healthSlideImage;
+    QPixmap *healthHolderImage;
 
 
 public slots:
@@ -44,6 +46,7 @@ private:
     void createBrick(int spawnTimeout);
     void createScore();
     void createHealth();
+    void createHealthHolder();
 
     void setGameView();
     void setGameScene();

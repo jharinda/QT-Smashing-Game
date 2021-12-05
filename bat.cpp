@@ -1,8 +1,9 @@
 #include "bat.h"
 #include <QKeyEvent>
 #include <QGraphicsScene>
-#include "brick.h"
 #include <QDebug>
+
+#include "brick.h"
 
 Bat::Bat(QGraphicsItem *parent):QGraphicsPixmapItem(parent)
 {

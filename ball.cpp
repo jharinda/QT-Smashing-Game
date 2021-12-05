@@ -59,6 +59,8 @@ void Ball::move(){
 
         playSound(ballHitBat);
 
+        game->health->createHealth();
+
         int BAT_WIDTH =  colliding_items[i]->boundingRect().width();
         int batX = colliding_items[i]->pos().x();
 
@@ -78,24 +80,25 @@ void Ball::move(){
 
      //when ball reaches the left
     if (pos().x() < 0) {
-
         if(speedX < 0){
             speedX *= -1;
         }
 
         playSound(ballHitWall);
-
     }
 
     //when ball reaches the bottom
-    if ( pos().y() + ( pixmap().height() ) > scene()->height()) {
+    if ( pos().y() + ( pixmap().height() ) > scene()->height() - 40 ) {
         speedY *= -1;
         playSound(ballHitWall);
 
-        game->health->decrease();
-        if(game->health->getHealth() == 0){
+
+        if(game->health->getHealth() <= 0){
+           // return;
            // speedY = 0;
            // speedX = 0;
+        }else{
+            game->health->decrease();
         }
 
     }

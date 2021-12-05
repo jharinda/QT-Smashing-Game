@@ -3,6 +3,9 @@
 
 
 #include <QGraphicsTextItem>
+#include <stack>
+#include <iostream>
+#include <QList>
 
 class Health : public QGraphicsTextItem
 {
@@ -12,9 +15,14 @@ public:
     void increase();
     void decrease();
     int getHealth();
+    void createHealth();
 
 private:
     int health;
+    int *healthBars ;
+    bool isHealthCreated = false;
+    QGraphicsPixmapItem *healthBar;
+    QList<QGraphicsPixmapItem* >array;
 };
 
 
