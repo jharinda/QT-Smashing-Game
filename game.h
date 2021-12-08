@@ -9,6 +9,7 @@
 #include "brick.h"
 #include "score.h"
 #include "health.h"
+#include "menu.h"
 
 class Game : public QGraphicsView
 {
@@ -17,16 +18,24 @@ public:
     Game(QWidget *parent = 0);
     QGraphicsScene *scene;
     QGraphicsView *view;
-    Bat *bat;
+    Bat *bat = nullptr;
     Ball *ball;
     Brick *brick;
     Score *score;
     Health *health;
+    Menu *menu;
+
+    QTimer *ballTimeout;
+    QTimer *brickGenerator;
 
     QGraphicsPixmapItem *healthHolder;
+    void createMenu();
 
     int screenWidth;
     int screenHeight;
+
+public:
+    void createMatch();
 private:
     QPixmap *batImage;
     QPixmap *ballImage;
@@ -34,12 +43,16 @@ private:
     QPixmap *healthBarImage;
     QPixmap *healthHolderImage;
 
+    QGraphicsPixmapItem *playButton;
+
 
 public slots:
     void spawnBrick();
 
 private:
     void setPixmaps();
+
+    bool eventFilter(QObject *target, QEvent *event);
 
     void createBat();
     void createBall();

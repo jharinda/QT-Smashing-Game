@@ -6,6 +6,12 @@
         <file>Res/Images/Playground/Brick.png</file>
         <file>Res/Images/Playground/Health_bar.png</file>
         <file>Res/Images/Playground/Player_health_holder.png</file>
+        <file>Res/Images/Menu/Menu_BG.png</file>
+        <file>Res/Images/Menu/Exit_Button.png</file>
+        <file>Res/Images/Menu/Play_Button.png</file>
+        <file>Res/Images/Menu/Restart_Button.png</file>
+        <file>Res/Images/Menu/Resume_Button.png</file>
+        <file>Res/Images/Menu/Settings_Button.png</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>Res/Sounds/Bat_Hit.wav</file>

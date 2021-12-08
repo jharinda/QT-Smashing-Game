@@ -13,6 +13,7 @@ Bat::Bat(QGraphicsItem *parent):QGraphicsPixmapItem(parent)
 
 void Bat::keyPressEvent(QKeyEvent *event)
 {
+    qDebug()<< "pressed";
     if(event->key() == Qt::Key_Left){
         moveBatLeft();
     }
@@ -21,6 +22,7 @@ void Bat::keyPressEvent(QKeyEvent *event)
         moveBatRight();
     }
 }
+
 
 void Bat::spawn()
 {

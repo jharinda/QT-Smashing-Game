@@ -22,7 +22,7 @@ private:
     int *healthBars ;
     bool isHealthCreated = false;
     QGraphicsPixmapItem *healthBar;
-    QList<QGraphicsPixmapItem* >array;
+    QList<QGraphicsPixmapItem* >healthBarItems;
 };
 
 

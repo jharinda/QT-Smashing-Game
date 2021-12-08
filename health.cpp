@@ -26,11 +26,13 @@ void Health::increase()
 
 void Health::decrease()
 {
-    scene()->removeItem(array.last());
-    delete array.last();
-    array.removeLast();
+    if(healthBarItems.length()){
+        scene()->removeItem(healthBarItems.last());
+        delete healthBarItems.last();
+        healthBarItems.removeLast();
+        health --;
+    }
 
-    health --;
 }
 
 int Health::getHealth()
@@ -45,16 +47,16 @@ void Health::createHealth()
         QGraphicsPixmapItem *healthBarr = new QGraphicsPixmapItem();
         healthBarr->setPixmap(QPixmap(":/images/Res/Images/Playground/Health_bar.png"));
 
-        if(array.empty()){
+        if(healthBarItems.empty()){
             healthBarr->setPos(game->healthHolder->x() + 10,
                                game->healthHolder->y() + 4);
         }else{
-            healthBarr->setPos( array.last()->pos().x() + healthBarr->boundingRect().width(),
-                                array.last()->pos().y());
+            healthBarr->setPos( healthBarItems.last()->pos().x() + healthBarr->boundingRect().width(),
+                                healthBarItems.last()->pos().y());
         }
 
-        array.append(healthBarr);
-        scene()->addItem(array[i]);
+        healthBarItems.append(healthBarr);
+        scene()->addItem(healthBarItems[i]);
         isHealthCreated = true;
     }
 

@@ -16,6 +16,8 @@ SOURCES += \
     game.cpp \
     health.cpp \
     main.cpp \
+    menu.cpp \
+    playbutton.cpp \
     score.cpp
 
 HEADERS += \
@@ -24,6 +26,8 @@ HEADERS += \
     brick.h \
     game.h \
     health.h \
+    menu.h \
+    playbutton.h \
     score.h
 
 FORMS +=
