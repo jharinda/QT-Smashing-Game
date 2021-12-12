@@ -2,6 +2,8 @@
 #define SCORE_H
 
 #include <QGraphicsTextItem>
+#include <QFont>
+
 
 class Score : public QGraphicsTextItem
 {

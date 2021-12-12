@@ -1,9 +1,16 @@
 #ifndef GAME_H
 #define GAME_H
+
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QTimer>
+#include <QPixmap>
+#include <QDebug>
+#include <QObject>
+#include <QEvent>
+#include <QMouseEvent>
+
 #include "ball.h"
 #include "bat.h"
 #include "brick.h"

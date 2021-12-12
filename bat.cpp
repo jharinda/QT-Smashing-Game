@@ -1,14 +1,8 @@
 #include "bat.h"
-#include <QKeyEvent>
-#include <QGraphicsScene>
-#include <QDebug>
-
-#include "brick.h"
 
 Bat::Bat(int keySensitivity,QGraphicsItem *parent):QGraphicsPixmapItem(parent)
 {
     perPixel = keySensitivity;
-    setPixmap(QPixmap(":/images/Res/Images/Playground/Bat.png"));
 }
 
 void Bat::keyPressEvent(QKeyEvent *event)
@@ -22,12 +16,6 @@ void Bat::keyPressEvent(QKeyEvent *event)
     }
 }
 
-
-void Bat::spawn()
-{
-    Brick *brick = new Brick();
-    scene()->addItem(brick);
-}
 
 void Bat::moveBatLeft()
 {

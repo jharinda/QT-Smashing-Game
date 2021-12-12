@@ -6,9 +6,10 @@ extern Game *game;
 
 Menu::Menu(QGraphicsItem *parent):QGraphicsPixmapItem(parent)
 {
-    setImages();
-
+    //setImage;
+    menuBackgroundImage = new QPixmap(":/images/Res/Images/Menu/Menu_BG.png");
     setPixmap(*menuBackgroundImage);
+
     setPos(0,0);
 
     timer = new QTimer();
@@ -25,11 +26,5 @@ void Menu::createMenu()
     scene()->addItem(playButtonn);
 
     timer->stop();
-}
-
-
-void Menu::setImages()
-{
-    menuBackgroundImage = new QPixmap(":/images/Res/Images/Menu/Menu_BG.png");
 }
 

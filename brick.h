@@ -4,6 +4,12 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 
+#include <QGraphicsScene>
+#include <QList>
+#include <QPointF>
+#include <QTimer>
+
+
 class Brick: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT

@@ -1,20 +1,11 @@
 #include "ball.h"
-#include "bat.h"
 #include "game.h"
-#include "brick.h"
-
-#include <QTimer>
-#include <QGraphicsScene>
-#include <QDebug>
-#include <QList>
-#include <QDebug>
 
 extern Game * game;
 
 Ball::Ball(float speed, QGraphicsItem *parent)
     : QGraphicsPixmapItem(parent)
 {
-    setPixmap(QPixmap(":/images/Res/Images/Playground/Ball.png"));
 
     ballHitBat = new QMediaPlayer();
     ballHitBrick = new QMediaPlayer();
@@ -55,7 +46,6 @@ void Ball::move(){
 
     //when ball reaches the bottom
     if ( pos().y() + ( pixmap().height() ) > scene()->height() - 40 ) {
-
         //invert the speed
         if(speedY > 0){
             speedY *= -1;
@@ -81,9 +71,6 @@ void Ball::move(){
         }
 
          playSound(ballHitBottom);
-
-
-
     }
 
     //when ball reaches the top

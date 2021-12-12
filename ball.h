@@ -5,6 +5,9 @@
 #include <QMediaPlayer>
 #include <QObject>
 
+#include "brick.h"
+#include "bat.h"
+
 class Ball: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT

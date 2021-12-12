@@ -3,6 +3,9 @@
 
 #include <QGraphicsPixmapItem>
 #include <QObject>
+#include <QDebug>
+
+#include "game.h"
 
 class PlayButton: public QObject, public QGraphicsPixmapItem
 {

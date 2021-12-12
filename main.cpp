@@ -1,6 +1,5 @@
 #include <QApplication>
 #include "game.h"
-#include <QOpenGLWindow>
 
 Game * game;
 

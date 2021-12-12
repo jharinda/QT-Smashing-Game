@@ -1,11 +1,10 @@
 #ifndef HEALTH_H
 #define HEALTH_H
 
-
 #include <QGraphicsTextItem>
-#include <stack>
-#include <iostream>
 #include <QList>
+#include <QFont>
+#include <QPixmap>
 
 class Health : public QGraphicsTextItem
 {
