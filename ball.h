@@ -11,6 +11,9 @@ class Ball: public QObject, public QGraphicsPixmapItem
 public:
     Ball(float speed,QGraphicsItem *parent = 0);
 
+private:
+    void playSound(QMediaPlayer *sound);
+
 public slots:
     void move();
 
@@ -18,11 +21,11 @@ private:
     float speedX;
     float speedY;
 
-    void playSound(QMediaPlayer *sound);
-
     QMediaPlayer * ballHitWall;
     QMediaPlayer * ballHitBat;
     QMediaPlayer * ballHitBrick;
+    QMediaPlayer * ballHitBottom;
+    QMediaPlayer * gameLost;
 };
 
 #endif // BALL_H

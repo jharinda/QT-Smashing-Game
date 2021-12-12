@@ -10,9 +10,6 @@ class PlayButton: public QObject, public QGraphicsPixmapItem
 public:
     PlayButton(QGraphicsItem *parent = 0);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
-
-public slots:
-    //void checkCollision();
 };
 
 #endif // PLAYBUTTON_H

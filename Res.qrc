@@ -17,5 +17,8 @@
         <file>Res/Sounds/Bat_Hit.wav</file>
         <file>Res/Sounds/Brick_Hit.wav</file>
         <file>Res/Sounds/Wall_Hit.wav</file>
+        <file>Res/Sounds/Ball_Hit_Bottom.wav</file>
+        <file>Res/Sounds/Game_Sound.wav</file>
+        <file>Res/Sounds/Game_Lost.wav</file>
     </qresource>
 </RCC>

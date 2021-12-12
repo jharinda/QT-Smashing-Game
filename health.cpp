@@ -8,15 +8,12 @@ extern Game *game;
 
 Health::Health(QGraphicsItem *parent):QGraphicsTextItem(parent)
 {
-    //initialize score to 0
     health = 5;
 
     //draw the tet
     setPlainText(QString("Health"));
     setDefaultTextColor(Qt::white);
     setFont(QFont("DigifaceWide", 10));
-
-
 }
 
 void Health::increase()
@@ -44,20 +41,19 @@ void Health::createHealth()
 {
     if (isHealthCreated) return;
     for(int i = 0; i < health; ++i ){
-        QGraphicsPixmapItem *healthBarr = new QGraphicsPixmapItem();
-        healthBarr->setPixmap(QPixmap(":/images/Res/Images/Playground/Health_bar.png"));
+        healthBar = new QGraphicsPixmapItem();
+        healthBar->setPixmap(QPixmap(":/images/Res/Images/Playground/Health_bar.png"));
 
         if(healthBarItems.empty()){
-            healthBarr->setPos(game->healthHolder->x() + 10,
+            healthBar->setPos(game->healthHolder->x() + 10,
                                game->healthHolder->y() + 4);
         }else{
-            healthBarr->setPos( healthBarItems.last()->pos().x() + healthBarr->boundingRect().width(),
+            healthBar->setPos( healthBarItems.last()->pos().x() + healthBar->boundingRect().width(),
                                 healthBarItems.last()->pos().y());
         }
 
-        healthBarItems.append(healthBarr);
+        healthBarItems.append(healthBar);
         scene()->addItem(healthBarItems[i]);
         isHealthCreated = true;
     }
-
 }

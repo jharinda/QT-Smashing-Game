@@ -6,7 +6,7 @@ Score::Score(QGraphicsItem *parent):QGraphicsTextItem(parent)
     //initialize score to 0
     score = 0;
 
-    //draw the tet
+    //draw the text
     setPlainText(QString("Score ") + QString::number(score));
     setDefaultTextColor(Qt::white);
     setFont(QFont("DigifaceWide",14));

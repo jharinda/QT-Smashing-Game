@@ -16,6 +16,7 @@ class Game : public QGraphicsView
     Q_OBJECT
 public:
     Game(QWidget *parent = 0);
+
     QGraphicsScene *scene;
     QGraphicsView *view;
     Bat *bat = nullptr;
@@ -29,13 +30,14 @@ public:
     QTimer *brickGenerator;
 
     QGraphicsPixmapItem *healthHolder;
-    void createMenu();
 
     int screenWidth;
     int screenHeight;
 
 public:
     void createMatch();
+    void createMenu();
+
 private:
     QPixmap *batImage;
     QPixmap *ballImage;
@@ -44,7 +46,6 @@ private:
     QPixmap *healthHolderImage;
 
     QGraphicsPixmapItem *playButton;
-
 
 public slots:
     void spawnBrick();
@@ -63,7 +64,6 @@ private:
 
     void setGameView();
     void setGameScene();
-
 };
 
 #endif // GAME_H

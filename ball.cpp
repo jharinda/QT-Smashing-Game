@@ -19,10 +19,14 @@ Ball::Ball(float speed, QGraphicsItem *parent)
     ballHitBat = new QMediaPlayer();
     ballHitBrick = new QMediaPlayer();
     ballHitWall = new QMediaPlayer();
+    ballHitBottom = new QMediaPlayer();
+    gameLost = new QMediaPlayer();
 
     ballHitBat->setMedia(QUrl("qrc:/sounds/Res/Sounds/Bat_Hit.wav"));
     ballHitBrick->setMedia(QUrl("qrc:/sounds/Res/Sounds/Brick_Hit.wav"));
     ballHitWall->setMedia(QUrl("qrc:/sounds/Res/Sounds/Wall_Hit.wav"));
+    ballHitBottom->setMedia(QUrl("qrc:/sounds/Res/Sounds/Ball_Hit_Bottom.wav"));
+    gameLost->setMedia(QUrl("qrc:/sounds/Res/Sounds/Game_Lost.wav"));
 
     speedY = speed;
     speedX = speedY;
@@ -51,20 +55,23 @@ void Ball::move(){
 
     //when ball reaches the bottom
     if ( pos().y() + ( pixmap().height() ) > scene()->height() - 40 ) {
-        if(speedY >0){
+
+        //invert the speed
+        if(speedY > 0){
             speedY *= -1;
         }
 
+        //decrease the score
         game->health->decrease();
-        playSound(ballHitWall);
 
-
+        //game over
         if(game->health->getHealth() <= 0){
-           //game over
+            playSound(gameLost);
+
+            //reset the game scene
             game->createMenu();
             game->ballTimeout->stop();
             game->brickGenerator->stop();
-            //game->scene->rem
 
             delete game->bat;
             game->bat = nullptr;
@@ -72,6 +79,8 @@ void Ball::move(){
             delete this;
             return;
         }
+
+         playSound(ballHitBottom);
 
 
 
@@ -89,17 +98,15 @@ void Ball::move(){
     //move ball through x and y a
     setPos(x() + speedX, y()+ speedY);
 
-
+    //collision detection
     QList<QGraphicsItem* > colliding_items = collidingItems();
-    for (int i=0, n = colliding_items.size(); i < n ; ++i){
+    for (int i = 0, n = colliding_items.size(); i < n ; ++i ){
 
         if(typeid(*(colliding_items[i])) == typeid(Brick)){
             playSound(ballHitBrick);
 
             int BRICK_WIDTH =  colliding_items[i]-> boundingRect().width();
-            //int BRICK_HEIGHT=  colliding_items[i]-> boundingRect().width();
             int brickX = colliding_items[i]->pos().x();
-            //int brickY = colliding_items[i]->pos().y();
 
             if( x() + pixmap().width() > brickX &&
                 x() <= brickX + BRICK_WIDTH ){
@@ -117,12 +124,10 @@ void Ball::move(){
 
         playSound(ballHitBat);
 
-        //game->health->createHealth();
-
         int BAT_WIDTH =  colliding_items[i]->boundingRect().width();
         int batX = colliding_items[i]->pos().x();
-
         float batHitPos = ( pos().x() - ( batX + BAT_WIDTH / 2)) / (BAT_WIDTH);
+
         if(speedY >0){
             speedY *= -1;
         }
@@ -133,7 +138,6 @@ void Ball::move(){
 
 void Ball::playSound(QMediaPlayer *sound)
 {
-    // play bulletsound
     if (sound->state() == QMediaPlayer::PlayingState){
         sound->setPosition(0);
     }

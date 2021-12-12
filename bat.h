@@ -11,9 +11,7 @@ class Bat: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    Bat(QGraphicsItem *parent = 0);
-
-    void keyPressEvent(QKeyEvent *event);
+    Bat(int keySensitivity, QGraphicsItem *parent = 0);
 
 public slots:
     void spawn();
@@ -22,6 +20,7 @@ private:
     int perPixel;
     void moveBatLeft();
     void moveBatRight();
+    void keyPressEvent(QKeyEvent *event);
 };
 
 #endif // BAT_H

@@ -36,7 +36,7 @@ void Game::createMatch()
     createHealthHolder();
     createBat();
     createBall();
-    createBrick(1000);
+    createBrick(3000);
     createScore();
     createHealth();
 }
@@ -67,7 +67,7 @@ bool Game::eventFilter(QObject *target, QEvent *event){
     if ( target == scene )
         {
             //mouse movement listener to move the bat
-            if ( event->type() == QEvent::GraphicsSceneMouseMove)
+            if (event->type() == QEvent::GraphicsSceneMouseMove)
             {
                 QGraphicsSceneMouseEvent *mouseEvent
                         = static_cast<QGraphicsSceneMouseEvent *>( event );
@@ -89,7 +89,7 @@ bool Game::eventFilter(QObject *target, QEvent *event){
 void Game::createBat()
 {
 
-    bat = new Bat();
+    bat = new Bat(20);
 
     //set image to the bat
     bat->setPixmap(*batImage);
@@ -108,7 +108,8 @@ void Game::createBat()
 
 void Game::createBall()
 {
-    ball = new Ball(10);
+    //creating and setting the ball speed
+    ball = new Ball(-10);
 
     //setting ball position
     ball->setPos( bat->pos().x() ,
@@ -116,8 +117,11 @@ void Game::createBall()
 
     //set image to the bat
     ball->setPixmap(*ballImage);
+
+    //add ball to the scene
     scene->addItem(ball);
 
+    //add ball to the scene
     ballTimeout = new QTimer();
     connect(ballTimeout,SIGNAL(timeout()),ball,SLOT(move()));
 
@@ -135,7 +139,6 @@ void Game::createBrick(int spawnTimeout)
 
 void Game::createScore()
 {
-    //create the score
     score = new Score();
     score->setPos(score->boundingRect().width() / 4,
                   view->height() - score->boundingRect().height() - 3);

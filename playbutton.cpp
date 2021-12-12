@@ -5,15 +5,15 @@ extern Game *game;
 PlayButton::PlayButton(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 {
     QPixmap *playButtonImage = new QPixmap(":/images/Res/Images/Menu/Play_Button.png");
-
     setPixmap(*playButtonImage);
-
 }
 
 void PlayButton::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    qDebug()<< "Press 1";
+    //create match when play button clicked
     game->createMatch();
+
+    //closing the menu
     delete game->menu;
     delete this;
 }

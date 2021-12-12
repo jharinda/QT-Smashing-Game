@@ -5,15 +5,14 @@
 
 #include "brick.h"
 
-Bat::Bat(QGraphicsItem *parent):QGraphicsPixmapItem(parent)
+Bat::Bat(int keySensitivity,QGraphicsItem *parent):QGraphicsPixmapItem(parent)
 {
-    perPixel = 10;
+    perPixel = keySensitivity;
     setPixmap(QPixmap(":/images/Res/Images/Playground/Bat.png"));
 }
 
 void Bat::keyPressEvent(QKeyEvent *event)
 {
-    qDebug()<< "pressed";
     if(event->key() == Qt::Key_Left){
         moveBatLeft();
     }
@@ -28,7 +27,6 @@ void Bat::spawn()
 {
     Brick *brick = new Brick();
     scene()->addItem(brick);
-
 }
 
 void Bat::moveBatLeft()
